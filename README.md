@@ -1,2 +1,2 @@
-tiny little thing here for free. Some is just for command line.
+Tiny little thing here for free. it maybe only for command line.
 

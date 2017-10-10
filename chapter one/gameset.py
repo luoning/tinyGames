@@ -1,15 +1,15 @@
 totalBricksNumber =24
 diffLevel=1
 
-doorIsOpen=1
-isDark=0
-debug=1
-goEverywhere=1
+# doorIsOpen=1
+# isDark=0
+# debug=1
+# goEverywhere=1
 
-# doorIsOpen=0
-# isDark=1
-# debug=0
-# goEverywhere=0
+doorIsOpen=0
+isDark=1
+debug=0
+goEverywhere=0
 
 openkset = 0.2
 hb = 9

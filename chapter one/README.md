@@ -1,4 +1,5 @@
-[![license](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/luoning/tinyGames/blob/master/LICENSE)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/luoning/tinyGames/blob/master/LICENSE)
+[![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg?style=flat-square)]()
 
 **Base on python 3.6.2**
 

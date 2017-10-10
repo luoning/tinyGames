@@ -11,7 +11,7 @@
 python app.py
 ```
 
-**That's all!
+**That's all!**
 
 ### Special Command List 
 

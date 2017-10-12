@@ -230,7 +230,7 @@ User.prototype.displaySpriteCount = function(){
   }
 
 
-class Monster extends User{
+class Monster extends God{
    // '所有妖魔鬼怪的基类'
  
    constructor(name,lv){

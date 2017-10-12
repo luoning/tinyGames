@@ -1,10 +1,9 @@
-//Just a script Now!
 
-// function god.given(x){
-// 	god.givenNum=parseInt(Math.random(1)*x)+1
-// 	// console.log(god.givenNum)
-// 	return god.givenNum
-// }
+
+Array.prototype.in_array=function(e){
+　　var r=new RegExp(','+e+',');  
+　　return (r.test(','+this.join(this.S)+','));  
+};
 
 class Sprite {
     constructor(name) {
@@ -62,14 +61,14 @@ class God extends Sprite {
           return name
     }
 
-    creatUr(){
-      var user = new User(this.gvUrName(),1,5,5,5);
+    creatUr(x=map.name){
+      var user = new User(this.gvUrName(),1,[x,[this.given(500),this.given(500)]],5,5,5);
       console.log('由于神需要有一个人牧守世界，于是创造了',user.name)
       return user
     }
 
-    creatMst(){
-      var mst = new Monster(this.gvUrName(),this.given(5));
+    creatMst(x=map.name){
+      var mst = new Monster(this.gvUrName(),this.given(5),[x,[this.given(500),this.given(500)]]);
       console.log('由于神需要有一个人作为英雄的对手，于是创造了',mst.name)
       return mst
     }
@@ -105,7 +104,7 @@ class _Map extends _Scene {
 
 class User extends God {
 
-    constructor(name,lv,ab,db,hb) {
+    constructor(name,lv,lc=['',['','']],ab,db,hb) {
         super(name); 
         img:'img/avator/Robot.img';
 		    this.lv = lv; 
@@ -118,27 +117,27 @@ class User extends God {
         this.exp=0
         this.package=[]
       	this.killList=[]
+        this.location=lc
       	User.prototype.Count += 1
     }
 
-    run () {
-		if (this.lv>=3){
-			console.log(this.name + ' is running...');
-		}else{
-			console.log(this.name + ' can\'t running...');
-		}
+    moveTo (x=this.location[0],y,z) {
+		  this.location=[x,[y,z]]
+      console.log(this.name,'移动到了',x,'坐标',y,',',z,'的位置！')
     }
 
-    hello() {
-        alert('Hello, ' + this.name + '!');
+    hello(x) {
+        alert('你好, ' + x.name + '!');
     }
 
     fight(x) {
+      //console.log(this.location,x.location);
+      if (toString(this.location)==toString(x.location)){
         console.log(this.name,'战胜了宿命的对手',x.name)
         var expAdd = x.expGet
         this.totalExp +=  expAdd     
         console.log(this.name,'获得了exp ' +expAdd + '!');
-        this.killList.push(x.name)
+        this.killListSet(x.name)
         // console.log(x.maybeGet['package'])
         if (x.package.length>=1){
                 var packageAddID =god.given(x.package.length)-1
@@ -149,8 +148,11 @@ class User extends God {
                 x.package.splice(packageAddID,1)
                 packageAdd.owner=this.name
               }else{
-
-              }
+                console.log(x.name,'的包裹空空如也!');
+            }
+          }else{
+                console.log(this.name,'正在寻找 ' +x.name + '!');
+          }
     }
 
 
@@ -165,20 +167,24 @@ class User extends God {
     }
 
     eqItemInPackage(n){
-      var x=this.package[n]      
-      if(this.position[x.p]==''){
-            if(x.status==0){
-                  this.position[x.p] = x
-                  this.position[x.p].owner=this.name
-                  this.position[x.p].status=1
-                  console.log(this.name,'成功装备了'+this.position[x.p].name)
-                  this.package.splice(n,1)
-                }else{
-                  console.log('这件装备已经在身上了，换一件吧')
-                }
-              }else{
-                console.log('您已经装备了',this.position[x.p].name,'需要脱下来么?')
-                }
+      var x=this.package[n]  
+      if (x.status==0){    
+            if(this.position[x.p]==''){
+                  if(x.status==0){
+                        this.position[x.p] = x
+                        this.position[x.p].owner=this.name
+                        this.position[x.p].status=1
+                        console.log(this.name,'成功装备了'+this.position[x.p].name)
+                        this.package.splice(n,1)
+                      }else{
+                        console.log('这件装备已经在身上了，换一件吧')
+                      }
+                    }else{
+                      console.log('您已经装备了',this.position[x.p].name,'需要脱下来么?')
+                      }
+                  }else{
+                    console.log('您包裹里空空如也')
+                  }
     }
     eqItem(x){
       if(this.position[x.p]==''){
@@ -206,7 +212,17 @@ class User extends God {
     }
 
     killListSet(x){
-      this.killList.append(x)
+      if (this.killList.in_array(x)){
+            console.log('你又战胜了一次',x)
+          }else{
+            console.log('你的战绩增加了一个',x)
+            this.killList.push(x)
+          }
+    }
+
+    findMst(x){
+      this.moveTo(x.location[0],x.location[1][0],x.location[1][1])
+      console.log(this.name,'找到了宿命之敌',x.name)
     }
 
     displayUSER(){
@@ -233,7 +249,7 @@ User.prototype.displaySpriteCount = function(){
 class Monster extends God{
    // '所有妖魔鬼怪的基类'
  
-   constructor(name,lv){
+   constructor(name,lv,lc=['',['','']],){
       super(name)
       this.lv = lv
       this.hp=parseInt(this.lv*150/((lv+5)*god.given(2)))
@@ -242,6 +258,7 @@ class Monster extends God{
       this.fcapacity =this.hp+this.attack+this.defence
       this.expGet=parseInt(this.fcapacity/10)
       this.package=[]
+      this.location=lc
       Monster.prototype.Count += 1
   	}
  
@@ -378,7 +395,7 @@ setType=[['钩','剑','刀','斧','钺','叉','鞭','矛','戟','笔','锤','棒
 
 
 
-x=god.creatMap('地球')
+map=god.creatMap('地球')
 
 xiaoming = god.creatUr()
 
@@ -393,18 +410,23 @@ xiaoming.eqItemInPackage(0)
 
 monster1 = god.creatMst()
 defset2 = monster1.creatEq(1)
-xiaoming.fight(monster1)
+
+xiaoming.findMst(monster1)
 defset3 = monster1.creatEq(1)
+xiaoming.fight(monster1)
 xiaoming.fight(monster1)
 
 monster2 = god.creatMst()
+xiaoming.findMst(monster2)
 xiaoming.fight(monster2)
 
 monster3 = god.creatMst()
 defset4 = monster3.creatEq(1)
+xiaoming.findMst(monster3)
 xiaoming.fight(monster3)
 defset5 = monster3.creatEq(1)
 defset6 = monster3.creatEq(1)
+xiaoming.findMst(monster3)
 xiaoming.fight(monster3)
 xiaoming.fight(monster3)
 
@@ -413,3 +435,11 @@ xiaoming.uneqItem(1)
 xiaoming.eqItemInPackage(0)
 
 xiaoming.displayUSER()
+xiaoming
+
+
+
+
+
+
+

@@ -17,9 +17,7 @@ node Rclass.js
 
 ```javascript
 
-var god = new God()
-
-x=god.creatMap('地球')
+map=god.creatMap('地球')
 
 xiaoming = god.creatUr()
 
@@ -34,18 +32,23 @@ xiaoming.eqItemInPackage(0)
 
 monster1 = god.creatMst()
 defset2 = monster1.creatEq(1)
-xiaoming.fight(monster1)
+
+xiaoming.findMst(monster1)
 defset3 = monster1.creatEq(1)
+xiaoming.fight(monster1)
 xiaoming.fight(monster1)
 
 monster2 = god.creatMst()
+xiaoming.findMst(monster2)
 xiaoming.fight(monster2)
 
 monster3 = god.creatMst()
 defset4 = monster3.creatEq(1)
+xiaoming.findMst(monster3)
 xiaoming.fight(monster3)
 defset5 = monster3.creatEq(1)
 defset6 = monster3.creatEq(1)
+xiaoming.findMst(monster3)
 xiaoming.fight(monster3)
 xiaoming.fight(monster3)
 

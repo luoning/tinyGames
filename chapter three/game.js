@@ -213,13 +213,6 @@ function game(x,y){
 		}
 	}
 
-var x =new rep('复读机')
-var y =new ref('不合作')
-var z =new red('小红帽')
-var b =new black('一条线')
-var l =new ljh('老江湖')
-var m =new maybeRep('错误宝宝',0.05)
-
 function gametest(k,p,n){
 	for (var i = n - 1; i >= 0; i--) {
 		game(k,p)
@@ -227,9 +220,18 @@ function gametest(k,p,n){
 }
 
 
+//  CASE 
+var x =new rep('你说我做不会错')
+var y =new ref('永远不合作')
+var z =new red('小红帽爱狼外婆')
+var b =new black('你不要黑我')
+var l =new ljh('老江湖')
+var m =new maybeRep('错误宝宝',0.05)
+
 gametest(m,x,10)
-
-
-
+gametest(l,x,10)
 
 console.log(x.coins,y.coins,z.coins,b.coins,l.coins,m.coins)
+// Example above
+
+

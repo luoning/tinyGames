@@ -1,7 +1,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/luoning/tinyGames/blob/master/LICENSE)
 [![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg?style=flat-square)]()
 
-**Base on Nodejs**
+**Base on Nodejs** 
 
 ### How to Play
 
@@ -13,9 +13,9 @@ node game.js
 
 **That's all!**
 
-### What will happen?? 
+### Something about Game Theory
 
-Who will earn more coins?
+Who will earn more coins? 
 
 ```javascript
 var x =new rep('你说我做不会错')
@@ -27,7 +27,7 @@ var m =new maybeRep('错误宝宝',0.05)
 
 gametest(m,x,10)
 gametest(l,x,10)
-//
+// Example above
 
 console.log(x.coins,y.coins,z.coins,b.coins,l.coins,m.coins)
 ```

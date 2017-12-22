@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Cards</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://v3.bootcss.com/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="./cards.js"></script> 
+    <script type="text/javascript" src="./js/init.js"></script> 
+    <style type="text/css">
+    	img{
+    		height: 100px;
+    	}
+    	.item{
+    		float: left;
+    	}
+    </style>
+</head>
+
+<body>
+	<div id="res" class="container"></div>
+	<script>
+		$('#res').html(init(2,8,4,"value"))  //2副牌；留8张底；4人局
+	</script>
+</body>
+</html>

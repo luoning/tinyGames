@@ -9,6 +9,6 @@
 
 init(x,y,z)
 
-X, y, Z are real numbers
+x, y, z are real numbers
 
 
